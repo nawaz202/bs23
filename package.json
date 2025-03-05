@@ -1,0 +1,12 @@
+{
+  "name": "tailwind-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./output/output.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./output/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.7"
+  }
+}
