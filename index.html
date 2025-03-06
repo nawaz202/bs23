@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess The Number Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+<div class="bg-white p-8 rounded-lg shadow-lg text-center w-96">
+  <h1 class="text-3xl font-bold mb-4">🎯 Guess the Number Game</h1>
+  <p class="mb-4">Select a number between 1 and 100:</p>
+  
+  <div class="grid grid-cols-10 gap-2 mb-4">
+    <script>
+      for (let i = 1; i <= 100; i++) {
+        document.write(`<button class="number-btn p-2 bg-blue-200 rounded hover:bg-blue-400" onclick="selectNumber(${i})">${i}</button>`);
+      }
+    </script>
+  </div>
+
+  <p class="text-lg mb-2">Your Guess: <span id="guessValue">None</span></p>
+  <p id="message" class="mt-4 text-lg text-gray-700"></p>
+</div>
+
+<script>
+  let randomNumber = Math.floor(Math.random() * 100) + 1;
+  let attempts = 0;
+  let selectedNumber = null;
+
+  function selectNumber(value) {
+    selectedNumber = value;
+    document.getElementById("guessValue").innerText = value;
+    checkGuess();
+  }
+
+  function checkGuess() {
+    let message = document.getElementById("message");
+    
+    if (selectedNumber === null) {
+      message.innerText = "Please select a number first!";
+      message.classList.remove("text-green-600");
+      return;
+    }
+
+    attempts++;
+
+    if (selectedNumber === randomNumber) {
+      message.innerText = `🎉 Congratulations! You guessed it in ${attempts} tries!`;
+      message.classList.add("text-green-600");
+    } else if (selectedNumber < randomNumber) {
+      message.innerText = "Too low! Try again.";
+      message.classList.remove("text-green-600");
+    } else {
+      message.innerText = "Too high! Try again.";
+      message.classList.remove("text-green-600");
+    }
+  }
+</script>
+</body>
+</html>
